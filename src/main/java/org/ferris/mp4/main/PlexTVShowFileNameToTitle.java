@@ -12,7 +12,7 @@ import org.ferris.mp4.title.TitleChanger;
  */
 public class PlexTVShowFileNameToTitle {
     public static void main(String[] args) throws Exception {
-        File dir = new File("C:\\Users\\Michael\\Videos\\TV Shows\\Parents\\Homeland\\Season 04");
+        File dir = new File("C:\\Users\\Michael\\Videos\\TV Shows\\Parents\\Homeland\\Season 05");
         List<File> files
             = Arrays.asList(
                 dir.listFiles(f -> f.isFile() && f.getName().endsWith(".mp4"))
