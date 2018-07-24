@@ -1,16 +1,14 @@
 package org.ferris.mp4.main;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import org.ferris.mp4.title.TitleChanger;
 
 /**
  *
  * @author Michael Remijan mjremijan@yahoo.com @mjremijan
  */
-public class PlexTVShowFileNameToTitle {
+public class RenameMain {
     public static void main(String[] args) throws Exception {
         File dir = new File("C:\\Users\\Michael\\Desktop\\Season 04");
         List<File> files
@@ -19,19 +17,12 @@ public class PlexTVShowFileNameToTitle {
             );
         files.forEach(f -> {
             System.out.printf("Processing: %s%n", f.getName());
-            // Paw Patrol - s01e11 - Pups Pit Crew
-            String [] tokens
-                = f.getName().split(" - ");
-            String title
-                = tokens[2].trim();
-            title = title.substring(0, title.lastIndexOf(".")).trim();
 
-            System.out.printf("Set title: \"%s\"%n", title);
-            try {
-                new TitleChanger(f).set(title);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            String newName = f.getName().substring(0, f.getName().lastIndexOf("-")).trim();
+            newName += ".mp4";
+
+            System.out.printf("Set new name: \"%s\"%n", newName);
+                f.renameTo(new File(f.getParentFile(), newName));
         });
         System.out.printf("DONE%n");
     }
