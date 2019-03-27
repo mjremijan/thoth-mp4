@@ -3,12 +3,13 @@ package org.ferris.mp4.main;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import org.ferris.mp4.title.TitleChanger;
 
 /**
  *
  * @author Michael Remijan mjremijan@yahoo.com @mjremijan
  */
-public class PlexMovieFileNameToTitle {
+public class PlexHomeVideoNameToTitle {
     public static void main(String[] args) {
         File dir = new File("D:\\Pictures\\_Staging\\12\\1.keep\\VP\\done");
         List<File> files
@@ -19,11 +20,11 @@ public class PlexMovieFileNameToTitle {
             //System.out.printf("Processing: %s%n", f.getName());
             // Finding Neverland (2004)
             String title
-                = f.getName().substring(0, f.getName().indexOf("(") - 1).trim();
+                = f.getName().substring(0, f.getName().indexOf(".mp4")).trim();
 
             try {
                 System.out.printf("Set title: \"%s\"%n", title);
-                //new TitleChanger(f).set(title);
+                new TitleChanger(f).set(title);
             } catch (Exception ex) {
                ex.printStackTrace();
             }

@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     
     <groupId>org.ferris</groupId>
-    <artifactId>ferris-mp4</artifactId>
+    <artifactId>thoth-mp4</artifactId>
     <version>1.0.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     
@@ -11,7 +11,7 @@
 		<name>The Ferris Foundation</name>
 	</organization>
     
-    <name>ferris-mp4</name>
+    <name>thoth-mp4</name>
     <description>An MP4 metadata editor wrapping org.mp4parser isoparser</description>
     <url>http://mjremijan.github.io/ferris-mp4</url>
     
