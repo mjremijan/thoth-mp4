@@ -93,9 +93,9 @@ public class TitleChanger {
         tmpWrite.position(0);
         long transferred = 0;
         while ((transferred += tmpWrite.transferTo(0, tmpWrite.size() - transferred, write)) != tmpWrite.size()) {
-            System.out.println(transferred);
+            //System.out.println(transferred);
         }
-        System.out.println(transferred);
+        //System.out.println(transferred);
         tmpWrite.close();
         tmp.delete();
         return write;
