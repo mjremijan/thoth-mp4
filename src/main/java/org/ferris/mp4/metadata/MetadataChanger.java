@@ -1,4 +1,4 @@
-package org.ferris.mp4.title;
+package org.ferris.mp4.metadata;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,6 +7,7 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
+import java.util.Date;
 import java.util.List;
 import org.ferris.mp4.io.BetterByteArrayOutputStream;
 import org.mp4parser.Box;
@@ -14,6 +15,7 @@ import org.mp4parser.Container;
 import org.mp4parser.IsoFile;
 import org.mp4parser.boxes.apple.AppleItemListBox;
 import org.mp4parser.boxes.apple.AppleNameBox;
+import org.mp4parser.boxes.apple.AppleRecordingYearBox;
 import org.mp4parser.boxes.iso14496.part12.ChunkOffsetBox;
 import org.mp4parser.boxes.iso14496.part12.FreeBox;
 import org.mp4parser.boxes.iso14496.part12.HandlerBox;
@@ -26,11 +28,11 @@ import org.mp4parser.tools.Path;
  *
  * @author Michael Remijan mjremijan@yahoo.com @mjremijan
  */
-public class TitleChanger {
+public class MetadataChanger {
 
     protected File mp4;
 
-    public TitleChanger(File mp4) {
+    public MetadataChanger(File mp4) {
         this.mp4 = mp4;
     }
 
@@ -101,7 +103,22 @@ public class TitleChanger {
         return write;
     }
 
+    public static class Title {
+        public Title(String value) { this.value = value; }
+        private String value;
+        public String getValue() { return value; }
+    }
+    
+    public static class Year {
+        public Year(Date value) { this.value = value; }
+        private Date value;
+        public Date getValue() { return value; }
+    }
+    
     public void set(String title) throws IOException {
+        this.set(new Title(title), null);
+    }
+    public void set(Title title, Year year) throws IOException {
         if (!mp4.exists()) {
             throw new FileNotFoundException("File " + mp4.getAbsolutePath() + " not exists");
         }
@@ -156,9 +173,15 @@ public class TitleChanger {
         }
         nam.setDataCountry(0);
         nam.setDataLanguage(0);
-        nam.setValue(title);
+        nam.setValue(title.getValue());
         ilst.addBox(nam);
 
+        if (year != null) {
+            AppleRecordingYearBox yea = new AppleRecordingYearBox();
+            yea.setDate(year.getValue());
+            ilst.addBox(yea);
+        }
+        
         long sizeAfter = moov.getSize();
         long diff = sizeAfter - sizeBefore;
         // This is the difference of before/after

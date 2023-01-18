@@ -3,7 +3,7 @@ package org.ferris.mp4.main;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
-import org.ferris.mp4.title.TitleChanger;
+import org.ferris.mp4.metadata.MetadataChanger;
 
 /**
  *
@@ -24,7 +24,7 @@ public class PlexHomeVideoNameToTitle {
 
             try {
                 System.out.printf("Set title: \"%s\"%n", title);
-                new TitleChanger(f).set(title);
+                new MetadataChanger(f).set(title);
             } catch (Exception ex) {
                ex.printStackTrace();
             }
