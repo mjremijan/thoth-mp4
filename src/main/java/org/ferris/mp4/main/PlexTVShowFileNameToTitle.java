@@ -19,28 +19,33 @@ import org.ferris.mp4.metadata.MetadataChanger;
  */
 public class PlexTVShowFileNameToTitle {
     public static void main(String[] args) throws Exception {
-        File dir = new File("D:\\Desktop\\Samurai Jack\\Season 01");
-        List<File> files = null;
-        List<Calendar> dates = null;
+        File dir;
+        List<Calendar> dates;
+        {
+            dir = new File("D:\\Videos\\TV Shows\\Parents\\Samurai Jack\\Season 01");
+           
+            int year = 2021;
+            dates = new ArrayList<Calendar>() {{
+                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
+                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
+                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
+                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 13));
+                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 27));
+                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 19));
+                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 20));
+                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 15));
+                add(new GregorianCalendar(year, GregorianCalendar.SEPTEMBER, 3));
+                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 12));
+                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 29));
+                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 26));
+                add(new GregorianCalendar(year, GregorianCalendar.DECEMBER, 3));
+            }};
+        }
         
-        files = Arrays.asList(
+        List<File> files = Arrays.asList(
             dir.listFiles(f -> f.isFile() && f.getName().endsWith(".mp4"))
         );
-        dates = new ArrayList<Calendar>() {{
-            add(new GregorianCalendar(2001, GregorianCalendar.AUGUST, 10));
-            add(new GregorianCalendar(2001, GregorianCalendar.AUGUST, 10));
-            add(new GregorianCalendar(2001, GregorianCalendar.AUGUST, 10));
-            add(new GregorianCalendar(2001, GregorianCalendar.AUGUST, 13));
-            add(new GregorianCalendar(2001, GregorianCalendar.AUGUST, 27));
-            add(new GregorianCalendar(2001, GregorianCalendar.NOVEMBER, 19));
-            add(new GregorianCalendar(2001, GregorianCalendar.AUGUST, 20));
-            add(new GregorianCalendar(2001, GregorianCalendar.OCTOBER, 15));
-            add(new GregorianCalendar(2001, GregorianCalendar.SEPTEMBER, 3));
-            add(new GregorianCalendar(2001, GregorianCalendar.OCTOBER, 12));
-            add(new GregorianCalendar(2001, GregorianCalendar.OCTOBER, 29));
-            add(new GregorianCalendar(2001, GregorianCalendar.NOVEMBER, 26));
-            add(new GregorianCalendar(2001, GregorianCalendar.DECEMBER, 3));
-        }};
+        
                 
         
 //        files.forEach (f -> {
@@ -65,16 +70,22 @@ public class PlexTVShowFileNameToTitle {
             File f = files.get(i);
             Calendar c = dates.get(i);
             
-            System.out.printf("Setting title: %s%n", f.getName());
-            System.out.printf("Setting year: %d%n%n", c.get(Calendar.YEAR));
-            // Paw Patrol - s01e11 - Pups Pit Crew.mp4
+            System.out.printf("PROCESSING%n");
+            System.out.printf(" file: %s%n", f.getName());
+            System.out.printf(" year: %d%n", c.get(Calendar.YEAR));
+
             String [] tokens
                 = f.getName().split(" - ");
             String title
                 = tokens[2].trim();
             title = title.substring(0, title.lastIndexOf(".")).trim();
-
-            System.out.printf("Set title: \"%s\"%n", title);
+            // Samurai jack
+            {
+                title = title.substring(
+                        title.indexOf(" ") + 1
+                );
+            }    
+            System.out.printf(" title: \"%s\"%n%n", title);
             try {
                 new MetadataChanger(f).set(
                       new MetadataChanger.Title(title)
