@@ -21,32 +21,50 @@ public class PlexTVShowFileNameToTitle {
     public static void main(String[] args) throws Exception {
         File dir;
         List<Calendar> dates;
+//        {
+//            dir = new File("D:\\Videos\\TV Shows\\Parents\\Samurai Jack\\Season 01");
+//           
+//            int year = 2001;
+//            dates = new ArrayList<Calendar>() {{
+//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
+//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
+//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
+//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 13));
+//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 27));
+//                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 19));
+//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 20));
+//                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 15));
+//                add(new GregorianCalendar(year, GregorianCalendar.SEPTEMBER, 3));
+//                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 12));
+//                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 29));
+//                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 26));
+//                add(new GregorianCalendar(year, GregorianCalendar.DECEMBER, 3));
+//            }};
+//        }
         {
-            dir = new File("D:\\Videos\\TV Shows\\Parents\\Samurai Jack\\Season 01");
+            dir = new File("D:\\Videos\\TV Shows\\Parents\\Samurai Jack\\Season 02");
            
-            int year = 2021;
+            int year = 2002;
             dates = new ArrayList<Calendar>() {{
-                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
-                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
-                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
-                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 13));
-                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 27));
-                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 19));
-                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 20));
-                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 15));
-                add(new GregorianCalendar(year, GregorianCalendar.SEPTEMBER, 3));
-                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 12));
-                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 29));
-                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 26));
-                add(new GregorianCalendar(year, GregorianCalendar.DECEMBER, 3));
+                add(new GregorianCalendar(year, GregorianCalendar.MARCH, 1));
+                add(new GregorianCalendar(year, GregorianCalendar.MARCH, 8));
+                add(new GregorianCalendar(year, GregorianCalendar.MARCH, 15));
+                add(new GregorianCalendar(year, GregorianCalendar.MARCH, 22));
+                add(new GregorianCalendar(year, GregorianCalendar.MARCH, 29));
+                add(new GregorianCalendar(year, GregorianCalendar.APRIL, 5));
+                add(new GregorianCalendar(year, GregorianCalendar.APRIL, 12));
+                add(new GregorianCalendar(year, GregorianCalendar.SEPTEMBER, 6));
+                add(new GregorianCalendar(year, GregorianCalendar.SEPTEMBER, 13));
+                add(new GregorianCalendar(year, GregorianCalendar.SEPTEMBER, 20));
+                add(new GregorianCalendar(year, GregorianCalendar.SEPTEMBER, 27));
+                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 4));
+                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 11));
             }};
         }
         
         List<File> files = Arrays.asList(
             dir.listFiles(f -> f.isFile() && f.getName().endsWith(".mp4"))
         );
-        
-                
         
 //        files.forEach (f -> {
 //            System.out.printf("Renaming: %s%n", f.getName());
