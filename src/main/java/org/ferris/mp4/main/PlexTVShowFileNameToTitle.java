@@ -12,76 +12,35 @@ import org.ferris.mp4.metadata.MetadataChanger;
 /**
  *
  * @author Michael Remijan mjremijan@yahoo.com @mjremijan
- * 
- * TEST
- * 
- * TEST 2
  */
 public class PlexTVShowFileNameToTitle {
     public static void main(String[] args) throws Exception {
         File dir;
         List<Calendar> dates;
-//        {
-//            dir = new File("D:\\Videos\\TV Shows\\Parents\\Samurai Jack\\Season 01");
-//           
-//            int year = 2001;
-//            dates = new ArrayList<Calendar>() {{
-//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
-//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
-//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
-//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 13));
-//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 27));
-//                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 19));
-//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 20));
-//                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 15));
-//                add(new GregorianCalendar(year, GregorianCalendar.SEPTEMBER, 3));
-//                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 12));
-//                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 29));
-//                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 26));
-//                add(new GregorianCalendar(year, GregorianCalendar.DECEMBER, 3));
-//            }};
-//        }
         {
-            dir = new File("D:\\Videos\\TV Shows\\Parents\\Samurai Jack\\Season 02");
+            dir = new File("D:\\Videos\\TV Shows\\Parents\\Samurai Jack\\Season 01");
            
-            int year = 2002;
+            int year = 2001;
             dates = new ArrayList<Calendar>() {{
-                add(new GregorianCalendar(year, GregorianCalendar.MARCH, 1));
-                add(new GregorianCalendar(year, GregorianCalendar.MARCH, 8));
-                add(new GregorianCalendar(year, GregorianCalendar.MARCH, 15));
-                add(new GregorianCalendar(year, GregorianCalendar.MARCH, 22));
-                add(new GregorianCalendar(year, GregorianCalendar.MARCH, 29));
-                add(new GregorianCalendar(year, GregorianCalendar.APRIL, 5));
-                add(new GregorianCalendar(year, GregorianCalendar.APRIL, 12));
-                add(new GregorianCalendar(year, GregorianCalendar.SEPTEMBER, 6));
-                add(new GregorianCalendar(year, GregorianCalendar.SEPTEMBER, 13));
-                add(new GregorianCalendar(year, GregorianCalendar.SEPTEMBER, 20));
-                add(new GregorianCalendar(year, GregorianCalendar.SEPTEMBER, 27));
-                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 4));
-                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 11));
+                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
+                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
+                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 10));
+                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 13));
+                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 27));
+                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 19));
+                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 20));
+                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 15));
+                add(new GregorianCalendar(year, GregorianCalendar.SEPTEMBER, 3));
+                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 12));
+                add(new GregorianCalendar(year, GregorianCalendar.OCTOBER, 29));
+                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 26));
+                add(new GregorianCalendar(year, GregorianCalendar.DECEMBER, 3));
             }};
         }
         
         List<File> files = Arrays.asList(
             dir.listFiles(f -> f.isFile() && f.getName().endsWith(".mp4"))
         );
-        
-//        files.forEach (f -> {
-//            System.out.printf("Renaming: %s%n", f.getName());
-//            
-//            // Chip 'n Dale Rescue Rangers - s02e04 - Rescue Rangers to the Rescue Part Four -17.mp4
-//            String name
-//                = f.getName();
-//            int lastDashIndex
-//                = name.lastIndexOf("-");
-//            if (lastDashIndex > 0) {
-//                String prefix = name.substring(0, lastDashIndex).trim();
-//                File dest = new File(dir, prefix + ".mp4");
-//                System.out.printf("Rename to: \"%s\"\n", dest.getName());
-//                f.renameTo(dest);
-//            }
-//        });
-        
         
         for (int i=0; i<files.size(); i++)
         {
@@ -94,16 +53,14 @@ public class PlexTVShowFileNameToTitle {
 
             String [] tokens
                 = f.getName().split(" - ");
-            String title
-                = tokens[2].trim();
-            title = title.substring(0, title.lastIndexOf(".")).trim();
-            // Samurai jack
+            
+            String title;
             {
-                title = title.substring(
-                        title.indexOf(" ") + 1
-                );
-            }    
-            System.out.printf(" title: \"%s\"%n%n", title);
+                title = tokens[2].trim();
+                title = title.substring(0, title.lastIndexOf(".")).trim();
+                System.out.printf(" title: \"%s\"%n%n", title);
+            }
+
             try {
                 new MetadataChanger(f).set(
                       new MetadataChanger.Title(title)
