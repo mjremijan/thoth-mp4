@@ -10,12 +10,7 @@ import java.util.List;
 import org.ferris.mp4.metadata.MetadataChanger;
 
 /**
- *
  * @author Michael Remijan mjremijan@yahoo.com @mjremijan
- * 
- * TEST
- * 
- * TEST 2
  */
 public class PlexTVShowSamuraiJack {
     public static void main(String[] args) throws Exception {
@@ -81,27 +76,44 @@ public class PlexTVShowSamuraiJack {
 //                add(new GregorianCalendar(year, GregorianCalendar.JUNE, 7));
 //            }};
 //        }
+//        {
+//            dir = new File("D:\\Videos\\TV Shows\\Parents\\Samurai Jack\\Season 04");
+//           
+//            int year = 2003;
+//            dates = new ArrayList<Calendar>() {{
+//                add(new GregorianCalendar(year, GregorianCalendar.JUNE, 14));
+//                add(new GregorianCalendar(year, GregorianCalendar.JUNE, 21));
+//                add(new GregorianCalendar(year, GregorianCalendar.JUNE, 28));
+//                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 5));
+//                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 12));
+//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 23));
+//                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 23));
+//                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 19));
+//                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 24));
+//                add(new GregorianCalendar(year+1, GregorianCalendar.FEBRUARY, 14));
+//                add(new GregorianCalendar(year+1, GregorianCalendar.SEPTEMBER, 25));
+//                add(new GregorianCalendar(year+1, GregorianCalendar.SEPTEMBER, 25));
+//                add(new GregorianCalendar(year+1, GregorianCalendar.SEPTEMBER, 25));
+//            }};
+//        }
         {
-            dir = new File("D:\\Videos\\TV Shows\\Parents\\Samurai Jack\\Season 04");
+            dir = new File("D:\\Videos\\TV Shows\\Parents\\Samurai Jack\\Season 05");
            
-            int year = 2003;
+            int year = 2017;
             dates = new ArrayList<Calendar>() {{
-                add(new GregorianCalendar(year, GregorianCalendar.JUNE, 14));
-                add(new GregorianCalendar(year, GregorianCalendar.JUNE, 21));
-                add(new GregorianCalendar(year, GregorianCalendar.JUNE, 28));
-                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 5));
-                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 12));
-                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 23));
-                add(new GregorianCalendar(year, GregorianCalendar.AUGUST, 23));
-                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 19));
-                add(new GregorianCalendar(year, GregorianCalendar.NOVEMBER, 24));
-                add(new GregorianCalendar(year+1, GregorianCalendar.FEBRUARY, 14));
-                add(new GregorianCalendar(year+1, GregorianCalendar.SEPTEMBER, 25));
-                add(new GregorianCalendar(year+1, GregorianCalendar.SEPTEMBER, 25));
-                add(new GregorianCalendar(year+1, GregorianCalendar.SEPTEMBER, 25));
+                add(new GregorianCalendar(year, GregorianCalendar.MARCH, 11));
+                add(new GregorianCalendar(year, GregorianCalendar.MARCH, 18));
+                add(new GregorianCalendar(year, GregorianCalendar.MARCH, 25));
+                add(new GregorianCalendar(year, GregorianCalendar.APRIL, 8));
+                add(new GregorianCalendar(year, GregorianCalendar.APRIL, 15));
+                add(new GregorianCalendar(year, GregorianCalendar.APRIL, 22));
+                add(new GregorianCalendar(year, GregorianCalendar.APRIL, 29));
+                add(new GregorianCalendar(year, GregorianCalendar.MAY, 6));
+                add(new GregorianCalendar(year, GregorianCalendar.MAY, 13));
+                add(new GregorianCalendar(year, GregorianCalendar.MAY, 20));
             }};
-        }
-        
+        }        
+
         List<File> files = Arrays.asList(
             dir.listFiles(f -> f.isFile() && f.getName().endsWith(".mp4"))
         );
@@ -122,6 +134,7 @@ public class PlexTVShowSamuraiJack {
                 = tokens[2].trim();
             title = title.substring(0, title.lastIndexOf(".")).trim();
             // Samurai jack
+            if (!tokens[1].trim().startsWith("s05"))
             {
                 title = title.substring(
                         title.indexOf(" ") + 1
