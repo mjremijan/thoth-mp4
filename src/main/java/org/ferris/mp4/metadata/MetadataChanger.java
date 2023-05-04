@@ -118,6 +118,9 @@ public class MetadataChanger {
     public void set(String title) throws IOException {
         this.set(new Title(title), null);
     }
+    public void set(Title title) throws IOException  {
+        this.set(title, null);
+    }
     public void set(Title title, Year year) throws IOException {
         if (!mp4.exists()) {
             throw new FileNotFoundException("File " + mp4.getAbsolutePath() + " not exists");

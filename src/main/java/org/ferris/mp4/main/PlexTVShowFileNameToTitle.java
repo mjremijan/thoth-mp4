@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 import org.ferris.mp4.metadata.MetadataChanger;
@@ -15,10 +16,51 @@ import org.ferris.mp4.metadata.MetadataChanger;
  */
 public class PlexTVShowFileNameToTitle {
     public static void main(String[] args) throws Exception {
-        File dir;
-        List<Calendar> dates;
+        //withDates();
+        withoutDates();
+    }
+    
+    private static void withoutDates() throws Exception 
+    {
+        List<File> files = Arrays.asList(
+            new File("D:\\Videos\\Edits\\Sci-Bots\\Season 01")
+                .listFiles(f -> f.isFile() && f.getName().endsWith(".mp4"))
+        );
+        
+        for (int i=0; i<files.size(); i++)
         {
-            dir = new File("D:\\Videos\\TV Shows\\Parents\\Samurai Jack\\Season 05");
+            File f = files.get(i);
+            
+            System.out.printf("PROCESSING%n");
+            System.out.printf(" file: %s%n", f.getName());
+
+            String [] tokens
+                = f.getName().split(" - ");
+            
+            String title;
+            {
+                title = tokens[2].trim();
+                title = title.substring(0, title.lastIndexOf(".")).trim();
+                System.out.printf(" title: \"%s\"%n%n", title);
+            }
+
+            try {
+                new MetadataChanger(f).set(
+                      new MetadataChanger.Title(title)
+                );
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        System.out.printf("DONE%n");
+    }
+    
+    private static void withDates() throws Exception 
+    {
+        File dir = null;
+        List<Calendar> dates = Collections.EMPTY_LIST;
+        {
+            dir = new File("D:\\Videos\\Edits\\Sci-Bots\\Season 01");
            
             int year = 2017;
             dates = new ArrayList<Calendar>() {{
