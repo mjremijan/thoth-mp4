@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class PlexMovieFileNameToTitle {
     public static void main(String[] args) {
-        File dir = new File("D:\\Videos\\TV Shows\\Kids\\DreamWorks Dragons (2012)\\Season 01");
+        File dir = new File("D:\\Videos\\TV Shows\\Parents\\The Gilded Age (2022)\\Season 01");
         List<File> files
             = Arrays.asList(
                 dir.listFiles(f -> f.isFile() && f.getName().endsWith(".mp4"))

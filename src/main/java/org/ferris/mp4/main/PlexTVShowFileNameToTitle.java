@@ -15,44 +15,44 @@ import org.ferris.mp4.metadata.MetadataChanger;
  */
 public class PlexTVShowFileNameToTitle {
     public static void main(String[] args) throws Exception {
-        withDates();
-        //withoutDates();
+        //withDates();
+        withoutDates();
     }
     
-//    private static void withoutDates() throws Exception 
-//    {
-//        List<File> files = Arrays.asList(
-//            new File("D:\\Videos\\TV Shows\\Parents\\Snowpiercer (2020)\\Season 02")
-//                .listFiles(f -> f.isFile() && f.getName().endsWith(".mp4"))
-//        );                
-//        
-//        for (int i=0; i<files.size(); i++)
-//        {
-//            File f = files.get(i);
-//            
-//            System.out.printf("PROCESSING%n");
-//            System.out.printf(" file: %s%n", f.getName());
-//            
-//            String [] tokens
-//                = f.getName().split(" - ");
-//            
-//            String title;
-//            {
-//                title = tokens[tokens.length - 1].trim();
-//                title = title.substring(0, title.lastIndexOf(".")).trim();
-//                System.out.printf(" title: \"%s\"%n%n", title);
-//            }
-//           
-//            try {
-//                new MetadataChanger(f).set(
-//                      new MetadataChanger.Title(title)   
-//                );
-//            } catch (IOException ex) {
-//                throw new RuntimeException(ex);
-//            }
-//        }
-//        System.out.printf("DONE%n");
-//    }
+    private static void withoutDates() throws Exception 
+    {
+        List<File> files = Arrays.asList(
+            new File("D:\\Videos\\TV Shows\\Parents\\The Gilded Age (2022)\\Season 01")
+                .listFiles(f -> f.isFile() && f.getName().endsWith(".mp4"))
+        );                
+        
+        for (int i=0; i<files.size(); i++)
+        {
+            File f = files.get(i);
+            
+            System.out.printf("PROCESSING%n");
+            System.out.printf(" file: %s%n", f.getName());
+            
+            String [] tokens
+                = f.getName().split(" - ");
+            
+            String title;
+            {
+                title = tokens[tokens.length - 1].trim();
+                title = title.substring(0, title.lastIndexOf(".")).trim();
+                System.out.printf(" title: \"%s\"%n%n", title);
+            }
+           
+            try {
+                new MetadataChanger(f).set(
+                      new MetadataChanger.Title(title)   
+                );
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        System.out.printf("DONE%n");
+    }
     
     private static void withDates() throws Exception 
     {
